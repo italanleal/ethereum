@@ -63,12 +63,14 @@ async function Purge(){
                 ))
     
     while(i < 100000){
+        i++
         const private_key = randomBytes(32)
         const balance = await checkBalance(Wallet.default.fromPrivateKey(private_key).getAddressString())
         if(balance > 0) PackWallet([private_key, balance])
     }
 
     const end = new Date()
+    
     console.log(end.toLocaleTimeString('pt-BR', { 
                 timeZone: 'America/Sao_Paulo', 
                 timeStyle: 'medium' }
