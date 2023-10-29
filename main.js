@@ -53,19 +53,6 @@ async function PackWallet(wallet){
         }
     })
 }
-function setCount(){
-    reqc += 1
-        if(reqc == 100000){
-            reqc = 0
-            const date = new Date()
-            console.log(date.toLocaleTimeString('pt-BR', { 
-                timeZone: 'America/Sao_Paulo', 
-                timeStyle: 'medium' }
-                ),
-                ":100.000 request sent"
-                )
-        } 
-}
 
 async function Purge(){
     let i = 0
