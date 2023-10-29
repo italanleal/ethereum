@@ -68,15 +68,25 @@ function setCount(){
 }
 
 async function Purge(){
-
-    while(true){
+    let i = 0
+    const start = new Date()
+    console.log(start.toLocaleTimeString('pt-BR', { 
+                timeZone: 'America/Sao_Paulo', 
+                timeStyle: 'medium' }
+                ))
+    
+    while(i < 100000){
         const private_key = randomBytes(32)
         const balance = await checkBalance(Wallet.default.fromPrivateKey(private_key).getAddressString())
         if(balance > 0) PackWallet([private_key, balance])
 
         setCount()
     }
-}
 
-let reqc = 0
+    const end = new Date()
+    console.log(end.toLocaleTimeString('pt-BR', { 
+                timeZone: 'America/Sao_Paulo', 
+                timeStyle: 'medium' }
+                ))
+}
 Purge()
