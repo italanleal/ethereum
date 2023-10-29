@@ -66,8 +66,6 @@ async function Purge(){
         const private_key = randomBytes(32)
         const balance = await checkBalance(Wallet.default.fromPrivateKey(private_key).getAddressString())
         if(balance > 0) PackWallet([private_key, balance])
-
-        setCount()
     }
 
     const end = new Date()
