@@ -55,25 +55,10 @@ async function PackWallet(wallet){
 }
 
 async function Purge(){
-    let i = 0
-    const start = new Date()
-    console.log(start.toLocaleTimeString('pt-BR', { 
-                timeZone: 'America/Sao_Paulo', 
-                timeStyle: 'medium' }
-                ))
-    
-    while(i < 100000){
-        i++
+    while(true){
         const private_key = randomBytes(32)
         const balance = await checkBalance(Wallet.default.fromPrivateKey(private_key).getAddressString())
         if(balance > 0) PackWallet([private_key, balance])
     }
-
-    const end = new Date()
-    
-    console.log(end.toLocaleTimeString('pt-BR', { 
-                timeZone: 'America/Sao_Paulo', 
-                timeStyle: 'medium' }
-                ))
 }
 Purge()
